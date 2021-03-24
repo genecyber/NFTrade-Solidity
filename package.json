@@ -1,0 +1,16 @@
+{
+  "name": "nftrade",
+  "version": "1.0.0",
+  "description": "NFT for NFT Swap Contracts and DApp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shannon Code",
+  "license": "MIT",
+  "dependencies": {
+    "@openzeppelin/contracts": "^3.3.0",
+    "@openzeppelin/test-helpers": "^0.5.10",
+    "truffle-assertions": "^0.9.2"
+  }
+}
