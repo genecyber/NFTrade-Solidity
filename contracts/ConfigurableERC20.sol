@@ -461,6 +461,75 @@ contract ERC20 is IERC20, Configurable {
     }
 }
 
+pragma solidity 0.6.12;
+
+/**
+ * @dev A standard for detecting smart contract interfaces. 
+ * See: https://eips.ethereum.org/EIPS/eip-165.
+ */
+interface ERC165
+{
+
+  /**
+   * @dev Checks if the smart contract includes a specific interface.
+   * @notice This function uses less than 30,000 gas.
+   * @param _interfaceID The interface identifier, as specified in ERC-165.
+   * @return True if _interfaceID is supported, false otherwise.
+   */
+  function supportsInterface(
+    bytes4 _interfaceID
+  )
+    external
+    view
+    returns (bool);
+    
+}
+
+// File: browser/github/0xcert/ethereum-erc721/src/contracts/utils/supports-interface.sol
+
+pragma solidity 0.6.12;
+
+
+/**
+ * @dev Implementation of standard for detect smart contract interfaces.
+ */
+contract SupportsInterface is
+  ERC165
+{
+
+  /**
+   * @dev Mapping of supported intefraces.
+   * @notice You must not set element 0xffffffff to true.
+   */
+  mapping(bytes4 => bool) internal supportedInterfaces;
+
+  /**
+   * @dev Contract constructor.
+   */
+  constructor()
+    public
+  {
+    supportedInterfaces[0x01ffc9a7] = true; // ERC165
+  }
+
+  /**
+   * @dev Function to check which interfaces are suported by this contract.
+   * @param _interfaceID Id of the interface.
+   * @return True if _interfaceID is supported, false otherwise.
+   */
+  function supportsInterface(
+    bytes4 _interfaceID
+  )
+    external
+    override
+    view
+    returns (bool)
+  {
+    return supportedInterfaces[_interfaceID];
+  }
+
+}
+
 library SafeMath {
     function add(uint256 a, uint256 b) internal pure returns (uint256) {
         uint256 c = a + b;
@@ -586,7 +655,7 @@ library SafeERC20 {
     }
 }
 
-contract ConfigurableERC20 is ERC20 {
+contract ConfigurableERC20 is ERC20 { //SupportsInterface
     
     using SafeERC20 for IERC20;
     using Address for address;
@@ -600,6 +669,7 @@ contract ConfigurableERC20 is ERC20 {
         decimals = 18;
         _setGovernance(msg.sender);
         initialized = true;
+        // supportedInterfaces[0x74a1476f] = true;  //ERC20
     }
     
     function init() public {

@@ -664,7 +664,7 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
 
         // register the supported interfaces to conform to ERC1155MetadataURI via ERC165
         _registerInterface(_INTERFACE_ID_ERC1155_METADATA_URI);
-        _mint(msg.sender,789, 1, "");
+        _mint(msg.sender,789, 2, "");
         _mint(msg.sender,1337, 1, "");
     }
 
