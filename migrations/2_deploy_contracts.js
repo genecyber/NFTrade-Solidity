@@ -1,5 +1,5 @@
 const ConfigurableERC20 = artifacts.require("ConfigurableERC20");
-const NFTrade_v2 = artifacts.require("NFTrade_v2");
+const NFTrade_v2 = artifacts.require("NFTrade_v3");
 const EmblemVault = artifacts.require("EmblemVault");
 const ERC1155 = artifacts.require("ERC1155")
 module.exports = async function(deployer) {
